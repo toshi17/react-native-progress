@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Animated, StyleSheet, Text, View } from 'react-native';
+import { Animated, StyleSheet, Text, View, Image } from 'react-native';
 import { Surface as ARTSurface } from '@react-native-community/art';
 
 import Arc from './Shapes/Arc';
@@ -43,6 +43,7 @@ export class ProgressCircle extends Component {
     unfilledColor: PropTypes.string,
     endAngle: PropTypes.number,
     allowFontScaling: PropTypes.bool,
+    source: any
   };
 
   static defaultProps = {
@@ -56,6 +57,7 @@ export class ProgressCircle extends Component {
     thickness: 3,
     endAngle: 0.9,
     allowFontScaling: true,
+    source: undefined
   };
 
   constructor(props, context) {
@@ -97,6 +99,7 @@ export class ProgressCircle extends Component {
       unfilledColor,
       endAngle,
       allowFontScaling,
+      source,
       ...restProps
     } = this.props;
 
@@ -128,9 +131,9 @@ export class ProgressCircle extends Component {
                 rotate:
                   indeterminate && rotation
                     ? rotation.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: ['0deg', '360deg'],
-                      })
+                      inputRange: [0, 1],
+                      outputRange: ['0deg', '360deg'],
+                    })
                     : '0deg',
               },
             ],
@@ -148,8 +151,8 @@ export class ProgressCircle extends Component {
               strokeWidth={thickness}
             />
           ) : (
-            false
-          )}
+              false
+            )}
           {!indeterminate ? (
             <Shape
               fill={fill}
@@ -163,8 +166,8 @@ export class ProgressCircle extends Component {
               strokeWidth={thickness}
             />
           ) : (
-            false
-          )}
+              false
+            )}
           {border ? (
             <Arc
               radius={size / 2}
@@ -175,10 +178,10 @@ export class ProgressCircle extends Component {
               strokeWidth={border}
             />
           ) : (
-            false
-          )}
+              false
+            )}
         </Surface>
-        {!indeterminate && showsText ? (
+        {!indeterminate && (showsText || !source) ? (
           <View
             style={{
               position: 'absolute',
@@ -191,25 +194,39 @@ export class ProgressCircle extends Component {
               justifyContent: 'center',
             }}
           >
-            <Text
-              style={[
-                {
-                  color,
-                  fontSize: textSize / 4.5,
-                  fontWeight: '300',
-                },
-                textStyle,
-              ]}
-              allowFontScaling={allowFontScaling}
-            >
-              {formatText(progressValue)}
-            </Text>
+            {!source ? (
+              <Image
+                style={{
+                  width: textSize * 0.8,
+                  height: textSize * 0.8
+                }}
+                source={source}
+                resizeMode="contain"
+              />
+            ) : (
+                <Text
+                  style={
+                    [
+                      {
+                        color,
+                        fontSize: textSize / 4.5,
+                        fontWeight: '300',
+                      },
+                      textStyle,
+                    ]
+                  }
+                  allowFontScaling={allowFontScaling}
+                >
+                  {formatText(progressValue)}
+                </Text>
+              )}
           </View>
         ) : (
-          false
-        )}
+            false
+          )
+        }
         {children}
-      </View>
+      </View >
     );
   }
 }
