@@ -243,7 +243,8 @@ declare module 'react-native-progress' {
      */
     fill?: string;
 
-    source?: ImageSourcePropType;
+    imageSource?: ImageSourcePropType;
+    showsImage?: boolean;
   }
 
   /**

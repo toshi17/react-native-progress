@@ -35,6 +35,7 @@ export class ProgressCircle extends Component {
     ]),
     rotation: PropTypes.instanceOf(Animated.Value),
     showsText: PropTypes.bool,
+    showsImage: PropTypes.bool,
     size: PropTypes.number,
     style: PropTypes.any,
     strokeCap: PropTypes.oneOf(['butt', 'square', 'round']),
@@ -43,7 +44,7 @@ export class ProgressCircle extends Component {
     unfilledColor: PropTypes.string,
     endAngle: PropTypes.number,
     allowFontScaling: PropTypes.bool,
-    source: PropTypes.any
+    imageSource: PropTypes.any
   };
 
   static defaultProps = {
@@ -53,6 +54,7 @@ export class ProgressCircle extends Component {
     formatText: progress => `${Math.round(progress * 100)}%`,
     progress: 0,
     showsText: false,
+    showsImage: false,
     size: 40,
     thickness: 3,
     endAngle: 0.9,
@@ -91,6 +93,7 @@ export class ProgressCircle extends Component {
       progress,
       rotation,
       showsText,
+      showsImage,
       size,
       style,
       strokeCap,
@@ -99,7 +102,7 @@ export class ProgressCircle extends Component {
       unfilledColor,
       endAngle,
       allowFontScaling,
-      source,
+      imageSource,
       ...restProps
     } = this.props;
 
@@ -181,7 +184,7 @@ export class ProgressCircle extends Component {
               false
             )}
         </Surface>
-        {!indeterminate && (showsText || !source) ? (
+        {!indeterminate && (showsText || showsImage) ? (
           <View
             style={{
               position: 'absolute',
@@ -194,13 +197,13 @@ export class ProgressCircle extends Component {
               justifyContent: 'center',
             }}
           >
-            {source ? (
+            {showsImage ? (
               <Image
                 style={{
                   width: textSize * 0.8,
                   height: textSize * 0.8
                 }}
-                source={source}
+                source={imageSource}
                 resizeMode="contain"
               />
             ) : (
