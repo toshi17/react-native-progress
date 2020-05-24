@@ -194,7 +194,7 @@ export class ProgressCircle extends Component {
               justifyContent: 'center',
             }}
           >
-            {!source ? (
+            {source ? (
               <Image
                 style={{
                   width: textSize * 0.8,
