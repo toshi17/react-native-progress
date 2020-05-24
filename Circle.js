@@ -43,7 +43,7 @@ export class ProgressCircle extends Component {
     unfilledColor: PropTypes.string,
     endAngle: PropTypes.number,
     allowFontScaling: PropTypes.bool,
-    source: any
+    source: PropTypes.any
   };
 
   static defaultProps = {

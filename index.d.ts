@@ -1,6 +1,6 @@
 declare module 'react-native-progress' {
   import React from 'react';
-  import { TextStyle, ViewProperties } from 'react-native';
+  import { TextStyle, ViewProperties, ImageSourcePropType } from 'react-native';
 
   /**
    * Properties for all `Progress` components.
@@ -242,6 +242,8 @@ declare module 'react-native-progress' {
      * @default None
      */
     fill?: string;
+
+    source?: ImageSourcePropType;
   }
 
   /**
@@ -352,8 +354,8 @@ declare module 'react-native-progress' {
     strokeCap?: 'butt' | 'square' | 'round';
   }
 
-  export class Bar extends React.Component<BarPropTypes> {}
-  export class Circle extends React.Component<CirclePropTypes> {}
-  export class Pie extends React.Component<PiePropTypes> {}
-  export class CircleSnail extends React.Component<CircleSnailPropTypes> {}
+  export class Bar extends React.Component<BarPropTypes> { }
+  export class Circle extends React.Component<CirclePropTypes> { }
+  export class Pie extends React.Component<PiePropTypes> { }
+  export class CircleSnail extends React.Component<CircleSnailPropTypes> { }
 }
