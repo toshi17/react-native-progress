@@ -202,8 +202,8 @@ export class ProgressCircle extends Component {
             {showsImage ? (
               <Image
                 style={{
-                  width: textSize * 0.8,
-                  height: textSize * 0.8,
+                  width: textSize * 0.7,
+                  height: textSize * 0.7,
                   tintColor: imageTintColor
                 }}
                 source={imageSource}
