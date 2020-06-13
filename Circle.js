@@ -44,7 +44,8 @@ export class ProgressCircle extends Component {
     unfilledColor: PropTypes.string,
     endAngle: PropTypes.number,
     allowFontScaling: PropTypes.bool,
-    imageSource: PropTypes.any
+    imageSource: PropTypes.any,
+    imageTintColor: PropTypes.string
   };
 
   static defaultProps = {
@@ -59,7 +60,7 @@ export class ProgressCircle extends Component {
     thickness: 3,
     endAngle: 0.9,
     allowFontScaling: true,
-    source: undefined
+    imageSource: undefined
   };
 
   constructor(props, context) {
@@ -103,6 +104,7 @@ export class ProgressCircle extends Component {
       endAngle,
       allowFontScaling,
       imageSource,
+      imageTintColor,
       ...restProps
     } = this.props;
 
@@ -201,7 +203,8 @@ export class ProgressCircle extends Component {
               <Image
                 style={{
                   width: textSize * 0.8,
-                  height: textSize * 0.8
+                  height: textSize * 0.8,
+                  tintColor: imageTintColor
                 }}
                 source={imageSource}
                 resizeMode="contain"

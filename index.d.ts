@@ -244,6 +244,7 @@ declare module 'react-native-progress' {
     fill?: string;
 
     imageSource?: ImageSourcePropType;
+    imageTintColor?: string;
     showsImage?: boolean;
   }
 
